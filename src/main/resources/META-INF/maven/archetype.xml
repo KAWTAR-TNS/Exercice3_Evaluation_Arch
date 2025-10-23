@@ -1,0 +1,9 @@
+<archetype>
+  <id>EX3_Gestion_d_etat_civil</id>
+  <sources>
+    <source>src/main/java/App.java</source>
+  </sources>
+  <testSources>
+    <source>src/test/java/AppTest.java</source>
+  </testSources>
+</archetype>
