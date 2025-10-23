@@ -16,7 +16,7 @@ public class HibernateUtil {
 
             Configuration configuration = new Configuration();
             configuration.setProperties(props);
-
+            configuration.addAnnotatedClass(ma.projet.beans.Personne.class);
             configuration.addAnnotatedClass(ma.projet.beans.Homme.class);
             configuration.addAnnotatedClass(ma.projet.beans.Femme.class);
             configuration.addAnnotatedClass(ma.projet.beans.Mariage.class);

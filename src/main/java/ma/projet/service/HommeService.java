@@ -48,9 +48,9 @@ public class HommeService {
     // Les mariages d’un homme avec tous les détails
     public List<Mariage> getMariages(Homme h) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        String jpql = "FROM Mariage m WHERE m.homme = :h";
+        String jpql = "FROM Mariage m WHERE m.homme.id = :h";
         Query<Mariage> query = session.createQuery(jpql, Mariage.class);
-        query.setParameter("h", h);
+        query.setParameter("h", h.getId());
         List<Mariage> mariages = query.getResultList();
         session.close();
         return mariages;

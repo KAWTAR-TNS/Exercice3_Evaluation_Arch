@@ -44,8 +44,9 @@ public class TestEtatCivil {
         Mariage m2 = new Mariage(); m2.setHomme(h1); m2.setFemme(f2); m2.setDateDebut(sdf.parse("03/09/1995")); m2.setNbrEnfant(2);
         Mariage m3 = new Mariage(); m3.setHomme(h1); m3.setFemme(f3); m3.setDateDebut(sdf.parse("04/11/2000")); m3.setNbrEnfant(3);
         Mariage m4 = new Mariage(); m4.setHomme(h1); m4.setFemme(f4); m4.setDateDebut(sdf.parse("03/09/1989")); m4.setDateFin(sdf.parse("03/09/1990")); m4.setNbrEnfant(0);
+        Mariage m5 = new Mariage(); m5.setHomme(h2); m5.setFemme(f4); m5.setDateDebut(sdf.parse("03/09/1991")); m5.setNbrEnfant(5);
 
-        mariageService.add(m1);mariageService.add(m2);mariageService.add(m3);mariageService.add(m4);
+        mariageService.add(m1);mariageService.add(m2);mariageService.add(m3);mariageService.add(m4);mariageService.add(m5);
 
         // Liste des femmes
         System.out.println("Liste des femmes");
@@ -63,7 +64,7 @@ public class TestEtatCivil {
 
         // Le nombre d’enfants d’une femme entre deux dates
         int nbEnfants = femmeService.getNombreEnfants(f1, sdf.parse("01/01/1980"), sdf.parse("31/12/2025"));
-        System.out.println("\nNombre d'enfants de " + f1.getNom() + " : " + nbEnfants);
+        System.out.println("\nNombre d'enfants de " + f1.getPrenom() + " " + f1.getNom() + " : " + nbEnfants);
 
         // Les femmes mariées 2 fois ou plus
         System.out.println("\nFemmes mariées deux fois ou plus :");
@@ -71,9 +72,9 @@ public class TestEtatCivil {
         femmesMulti.forEach(f -> System.out.println(f.getNom() + " " + f.getPrenom()));
 
         // Les hommes mariés 4 femmes entre deux dates
-        System.out.println("\nHommes mariés à 4 femmes entre 1990 et 2025 :");
+        System.out.println("\nHommes mariés à 4 femmes entre 1980 et 2025 :");
         List<Homme> rabiaa = hommeService.H4F(
-                sdf.parse("01/01/1990"), sdf.parse("31/12/2025"));
+                sdf.parse("01/01/1980"), sdf.parse("31/12/2025"));
         rabiaa.forEach(h -> System.out.println(h.getNom() + " " + h.getPrenom()));
 
 
