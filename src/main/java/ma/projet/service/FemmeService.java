@@ -37,16 +37,19 @@ public class FemmeService {
     }
 
     public int getNombreEnfants(Femme f, Date start, Date end) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        String sql = "SELECT SUM(nbrEnfant) FROM Mariage WHERE femme_id = :f AND dateDebut BETWEEN :start AND :end";
-        Query<Integer> query = session.createNativeQuery(sql);
-        query.setParameter("f", f.getId());
-        query.setParameter("start", start);
-        query.setParameter("end", end);
-        Integer result = query.uniqueResult();
-        session.close();
-        return result != null ? result : 0;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String jpql = "SELECT SUM(m.nbrEnfant) FROM Mariage m " +
+                    "WHERE m.femme = :femme AND m.dateDebut BETWEEN :start AND :end";
+
+            Query<Long> query = session.createQuery(jpql, Long.class);
+            query.setParameter("femme", f);
+            query.setParameter("start", start);
+            query.setParameter("end", end);
+            Long result = query.getSingleResult();
+            return result != null ? result.intValue() : 0;
+        }
     }
+
 
     public List<Femme> getFemmes2FoisOuPlus() {
         Session session = HibernateUtil.getSessionFactory().openSession();

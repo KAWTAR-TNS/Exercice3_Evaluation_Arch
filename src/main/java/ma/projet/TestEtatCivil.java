@@ -48,7 +48,7 @@ public class TestEtatCivil {
         mariageService.add(m1);mariageService.add(m2);mariageService.add(m3);mariageService.add(m4);
 
         // Liste des femmes
-        System.out.println("=== Liste des femmes ===");
+        System.out.println("Liste des femmes");
         List<Femme> femmes = femmeService.findAll();
         femmes.forEach(f -> System.out.println(f.getNom() + " " + f.getPrenom()));
 
